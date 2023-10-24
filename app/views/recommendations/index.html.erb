@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Recommendations</h1>
+
+<div id="recommendations">
+  <% @recommendations.each do |recommendation| %>
+    <%= render recommendation %>
+    <p>
+      <%= link_to "Show this recommendation", recommendation %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New recommendation", new_recommendation_path %>
