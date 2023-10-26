@@ -12,12 +12,13 @@ class PlacesController < ApplicationController
     url = URI("https://api.yelp.com/v3/businesses/search?location=Nashville%2C%20TN&sort_by=best_match&limit=20")
 
     api_key = ENV.fetch("YELP_KEY")
+    header = 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
     request["accept"] = 'application/json'
-    request["Authorization"] = 'Bearer #{api_key}'
+    request["Authorization"] = "Bearer #{api_key}"
 
     response = http.request(request)
     actual_response = response.read_body
