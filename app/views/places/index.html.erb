@@ -1,18 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<%= form_tag("/places/query", method: "get") do %>
+  <%= label_tag(:q, "City & State:") %>
+  <%= text_field_tag(:location) %>
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="banner d-flex justify-content-center align-items-center flex-column" style="height: 400px;">
-    <div class="list d-flex justify-content-center align-items-center flex-column">
-      <h2 class="bannerSubtitleIndex">Welcome to NoshNow</h2>
-    </div>
-  </div>
-</div>
-
-<div class="banner-index d-flex justify-content-center align-items-center flex-column" style="height: 400px;">
-  <% @parsed_data.each do |b| %>
-    <%= b.fetch("name") %>
-   
-  <% end %>
-</div>
+  <%= label_tag(:q, "Price:") %>
+  <%= text_field_tag(:price) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 <%= link_to "New place", new_place_path %>
