@@ -1,0 +1,13 @@
+<div></div>
+
+<div class="card-container d-flex justify-content-center align-items-center flex-wrap">
+  <% @favorite_places.each do |place| %>
+    <div class="card d-flex justify-content-center align-items-center" style="width: 18rem;">
+      <img class="card-img-top" src="<%= place["image_url"] %>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= place.fetch("name") %></h5>
+       <!-- <p><%#= "#{place["location"]["city"]}", "#{place["location"]["state"]}"%></p>-->
+      </div>
+    </div>
+  <% end %>
+</div>

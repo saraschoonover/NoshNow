@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_204139) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_02_160750) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
+  enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_favorites_on_place_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
@@ -22,22 +35,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_204139) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "recommendations", force: :cascade do |t|
-    t.integer "price"
-    t.string "location"
-    t.float "rating"
-    t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.citext "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "username"
+    t.citext "username"
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,4 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_204139) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "favorites", "places"
+  add_foreign_key "favorites", "users"
 end

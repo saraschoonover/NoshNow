@@ -1,17 +1,29 @@
 <div class="card-container d-flex justify-content-center align-items-center flex-wrap">
-  <% @restaurants.each do |restaurant| %>
-    <div class="card d-flex justify-content-center align-items-center" style="width: 18rem;">
-      <img class="card-img-top" src="<%= restaurant["image_url"] %>" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
-        <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
-        <p class="card-text">
-          <%= form_tag("/places", method: "post") do %>
-            <%= hidden_field_tag("place[name]", restaurant.fetch("name")) %>
-          </p>
-          <a href="#" class="btn btn-primary"><%= submit_tag("Favorite me") %></a>
-          <% end %>
+  <% if @restaurants.any? %>
+    <% @restaurants.each do |restaurant| %>
+      <div class="card d-flex justify-content-center align-items-center" style="width: 18rem;">
+        <img class="card-img-top" src="<%= restaurant["image_url"] %>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
+          <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
+          <div>
+            <!-- Add the code for the Favorite me button here -->
+               <%= form_with url: "/places", method: :post do |f| %>
+
+                <%= f.hidden_field "place[name]", value: restaurant["name"]%>
+                <%= f.hidden_field "place[image_url]", value: restaurant["image_url"]%>
+                <%= f.hidden_field "place[price]", value: restaurant["price"]%>
+                <%= f.hidden_field "place[location]", value: "#{restaurant["location"]["city"]}, #{restaurant["location"]["state"]}" %>
+                <%= f.hidden_field "place[category]", value: params[:categories] %>
+                <%= f.hidden_field "place[rating]", value: restaurant["rating"]%>
+                <%= button_tag "Favorite me", type: "submit", data: {"turbo": "false"}, class: "btn btn-primary" %>
+               <% end %>
+            
+          </div>
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p>No restaurants match that criteria.</p>
   <% end %>
 </div>

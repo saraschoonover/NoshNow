@@ -2,14 +2,14 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
+#  id                     :bigint           not null, primary key
+#  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  image_url              :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  username               :string
+#  username               :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -24,7 +24,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  #serialize :favorites, Array
 
         #  validates :username, presence: true
         #  validates :username, uniqueness: true
+        has_many :favorites, dependent: :destroy
+        has_many :favorited_restaurants, through: :favorites, source: :place
+  
+  # def favorite
+  #   Place.where(id: favorites)
+  # end
 end
