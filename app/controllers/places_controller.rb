@@ -13,6 +13,7 @@ class PlacesController < ApplicationController
   # GET /places or /places.json
   def index
     @places = Place.all
+    
   end
 
   # GET /places/1 or /places/1.json
@@ -25,45 +26,42 @@ class PlacesController < ApplicationController
     
   end
 
-  # TODO: move to SearchController#index
-  # TODO: move to YelpClient service object eg YelpClient.new.search(query)
-  def query
-    query_string = {
-      location: params.fetch("location"),
-      price: params.fetch("price").to_i,
-      limit: 20,
-      sort_by: "best_match",
-      categories: "restaurants",
-      term: "restaurants"
-    }.to_query
-    pp query_string
-    base_url = "https://api.yelp.com/v3"
-
-    url = URI("#{base_url}/businesses/search?#{query_string}")
-
-    api_key = ENV.fetch("YELP_KEY")
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    
-    request = Net::HTTP::Get.new(url)
-    request["accept"] = 'application/json'
-    request["Authorization"] = "Bearer #{api_key}"
-    
-    response = http.request(request)
-    actual_response = response.read_body
-    @restaurants = JSON.parse(actual_response).fetch("businesses")
-    
-    render "places/results"
-  end
-
   # GET /places/1/edit
   def edit
   end
 
+  def favorite
+    #debugger.
+    @restaurant = Place.find(params[:id])
+    current_user.favorited_restaurants << @restaurant
+    redirect_to @restaurant, notice: 'Restaurant added to favorites'
+  end
+
+  def unfavorite
+    @restaurant = Place.find(params[:id])
+    current_user.favorited_restaurants.delete(@restaurant)
+    redirect_to @restaurant, notice: 'Restaurant removed from favorites'
+  end
+
+  def favorite_places
+    @favorite_places = current_user.favorites.map(&:place)
+  end
+
   # POST /places or /places.json
   def create
+    # params
+    # {
+    #   "restaurant_id"=>"XOo0oa5sXCZGjKXapIN95w"
+    # }
+    # yelp_place_id???
+
     @place = Place.new(place_params)
-    pp @place.name
+    price = place_params[:price].length
+    @place.price = price
+    @place.favorites.build(
+      user: current_user
+    )
+    # pp @place.name
     respond_to do |format|
       if @place.save
         format.html { redirect_to place_url(@place), notice: "Place was successfully created." }

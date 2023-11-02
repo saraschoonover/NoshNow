@@ -6,8 +6,8 @@ class SearchController < ApplicationController
       price: search_params.fetch("price", "1").to_i,
       limit: 20,
       sort_by: "best_match",
-      categories: "restaurants",
-      term: "restaurants"
+      categories: search_params.fetch("categories", "restaurants"),
+      #term: "tacos"
     }.to_query
     base_url = "https://api.yelp.com/v3"
 
@@ -24,11 +24,12 @@ class SearchController < ApplicationController
     response = http.request(request)
     actual_response = response.read_body
     @restaurants = JSON.parse(actual_response).fetch("businesses")
+    pp @restaurants
   end
 
   private
 
   def search_params
-    params.permit(:location, :price)
+    params.permit(:location, :price, :categories)
   end
 end
