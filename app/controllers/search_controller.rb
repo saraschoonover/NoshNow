@@ -7,6 +7,8 @@ class SearchController < ApplicationController
       limit: 20,
       sort_by: "best_match",
       categories: search_params.fetch("categories", "restaurants"),
+      rating: "ratings",
+      review_count: "review-count"
       #term: "tacos"
     }.to_query
     base_url = "https://api.yelp.com/v3"
