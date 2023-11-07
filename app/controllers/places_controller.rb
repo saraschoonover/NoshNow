@@ -30,22 +30,14 @@ class PlacesController < ApplicationController
   def edit
   end
 
-  def favorite
-    #debugger.
-    @restaurant = Place.find(params[:id])
-    current_user.favorited_restaurants << @restaurant
-    redirect_to @restaurant, notice: 'Restaurant added to favorites'
-  end
+  # TODO: move to FavoritesController#create
+  
 
-  def unfavorite
-    @restaurant = Place.find(params[:id])
-    current_user.favorited_restaurants.delete(@restaurant)
-    redirect_to @restaurant, notice: 'Restaurant removed from favorites'
-  end
+  # TODO: move to FavoritesController#destroy
+ 
 
-  def favorite_places
-    @favorite_places = current_user.favorites.map(&:place)
-  end
+  # TODO: move to FavoritesController#index
+
 
   # POST /places or /places.json
   def create
@@ -55,22 +47,22 @@ class PlacesController < ApplicationController
     # }
     # yelp_place_id???
 
-    @place = Place.new(place_params)
-    price = place_params[:price].length
-    @place.price = price
-    @place.favorites.build(
-      user: current_user
-    )
-    # pp @place.name
-    respond_to do |format|
-      if @place.save
-        format.html { redirect_to place_url(@place), notice: "Place was successfully created." }
-        format.json { render :show, status: :created, location: @place }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @place.errors, status: :unprocessable_entity }
-      end
-    end
+    # @place = Place.new(place_params)
+    # price = place_params[:price].length
+    # @place.price = price
+    # @place.favorites.build(
+    #   user: current_user
+    # )
+    # respond_to do |format|
+    #   if @place.save
+    #     format.html { redirect_to place_url(@place), notice: "Place was successfully created." }
+    #     format.json { render :show, status: :created, location: @place }
+    #     format.js
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @place.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /places/1 or /places/1.json
@@ -93,6 +85,7 @@ class PlacesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

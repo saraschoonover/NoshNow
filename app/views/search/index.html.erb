@@ -10,7 +10,7 @@
           <p>Price: <%= dollar_rating(restaurant.fetch("price").to_i) %></p>
           <p>Reviews: <%= restaurant.fetch("review_count") %> </p>
           <div>
-               <%= form_with url: "/places", method: :post do |f| %>
+              <%= form_with model: @favorite, url: favorites_path, local: true do |f| %>
                 <%= f.hidden_field "place[name]", value: restaurant["name"]%>
                 <%= f.hidden_field "place[image_url]", value: restaurant["image_url"]%>
                 <%= f.hidden_field "place[price]", value: restaurant["price"]%>
