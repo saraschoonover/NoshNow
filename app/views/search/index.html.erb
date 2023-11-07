@@ -1,24 +1,25 @@
-<div class="card-container d-flex justify-content-center align-items-center flex-wrap">
+<div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
   <% if @restaurants.any? %>
     <% @restaurants.each do |restaurant| %>
       <div class="card d-flex justify-content-center align-items-center" style="width: 18rem;">
-        <img class="card-img-top" src="<%= restaurant["image_url"] %>" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
+        <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
           <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
+        <img class="card-img-top" style="height: 200px;" src="<%= restaurant["image_url"] %>" alt="Card image cap">
+        <div class="search-card-body">
+          <p>Rating: <%= star_rating(restaurant.fetch("rating").to_i) %></p>
+          <p>Price: <%= dollar_rating(restaurant.fetch("price").to_i) %></p>
+          <p>Reviews: <%= restaurant.fetch("review_count") %> </p>
           <div>
-            <!-- Add the code for the Favorite me button here -->
                <%= form_with url: "/places", method: :post do |f| %>
-
                 <%= f.hidden_field "place[name]", value: restaurant["name"]%>
                 <%= f.hidden_field "place[image_url]", value: restaurant["image_url"]%>
                 <%= f.hidden_field "place[price]", value: restaurant["price"]%>
                 <%= f.hidden_field "place[location]", value: "#{restaurant["location"]["city"]}, #{restaurant["location"]["state"]}" %>
                 <%= f.hidden_field "place[category]", value: params[:categories] %>
-                <%= f.hidden_field "place[rating]", value: restaurant["rating"]%>
-                <%= button_tag "Favorite me", type: "submit", data: {"turbo": "false"}, class: "btn btn-primary" %>
+                <%= button_tag type: "submit", data: {"turbo": "false"}, class: "btn btn-primary" do %>
+                    <i class="fas fa-heart"></i> Favorite
                <% end %>
-            
+               <% end %>
           </div>
         </div>
       </div>

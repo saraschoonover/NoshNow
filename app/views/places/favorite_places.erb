@@ -3,10 +3,13 @@
 <div class="card-container d-flex justify-content-center align-items-center flex-wrap">
   <% @favorite_places.each do |place| %>
     <div class="card d-flex justify-content-center align-items-center" style="width: 18rem;">
+       <h5 class="card-title"><%= place.fetch("name") %></h5>
+       <p><%= place.fetch("location") %></p>
       <img class="card-img-top" src="<%= place["image_url"] %>" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title"><%= place.fetch("name") %></h5>
-       <!-- <p><%#= "#{place["location"]["city"]}", "#{place["location"]["state"]}"%></p>-->
+       <p><%= place.fetch("category") %></p>
+       <p>Rating: <%= star_rating(place.fetch("rating").to_i) %></p>
+       <p>Price: <%= dollar_rating(place.fetch("price").to_i) %></p>
       </div>
     </div>
   <% end %>
