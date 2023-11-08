@@ -5,23 +5,23 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = current_user.favorites.new(favorite_params)
-    if @favorite.save
-      redirect_to favorites_path, notice: "Place favorited successfully."
-    else
-      redirect_to favorites_path, alert: "Failed to favorite the place."
-    end
+    # @favorite = current_user.favorites.build(favorite_params[:place])
+    
+    # if @favorite.save
+    #   redirect_to favorites_url, notice: "Place favorited successfully."
+    # else
+    #   redirect_to favorites_url, alert: "Failed to favorite the place."
+    # end
   end
 
   def destroy
-    @place = Place.find(params[:place_id])
-    @favorite = current_user.favorites.find_by(place: @place) 
+    @favorite = current_user.favorites.find_by(place_id: params[:id])
 
     if @favorite
       @favorite.destroy 
-      redirect_to @place, notice: "Place unfavorited successfully."
+      redirect_to favorites_url, notice: "Place unfavorited successfully."
     else
-      redirect_to @place, alert: "Failed to unfavorite the place."
+      redirect_to favorites_url, alert: "Failed to unfavorite the place."
     end
   end
 

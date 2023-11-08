@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   resources :recommendations
   resources :places do
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create]
   end
   
   devise_for :users
 
   get "profile", to: "users#profile", as: "profile"
-  resources :favorites, only: [:index, :create, :destroy]
+  resources :favorites, only: [:index, :destroy]
 
 
   

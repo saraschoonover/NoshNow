@@ -31,7 +31,4 @@ class User < ApplicationRecord
         has_many :favorites, dependent: :destroy
         has_many :favorited_restaurants, through: :favorites, source: :place
   
-  # def favorite
-  #   Place.where(id: favorites)
-  # end
 end

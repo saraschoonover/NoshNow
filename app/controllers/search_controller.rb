@@ -8,7 +8,8 @@ class SearchController < ApplicationController
       sort_by: "best_match",
       categories: search_params.fetch("categories", "restaurants"),
       rating: "ratings",
-      review_count: "review-count"
+      review_count: "review-count",
+      
       #term: "tacos"
     }.to_query
     base_url = "https://api.yelp.com/v3"
@@ -26,6 +27,7 @@ class SearchController < ApplicationController
     response = http.request(request)
     actual_response = response.read_body
     @restaurants = JSON.parse(actual_response).fetch("businesses")
+    pp @restaurants
   end
 
   private
