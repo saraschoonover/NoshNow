@@ -21,10 +21,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Favorite < ApplicationRecord
-  extend ActsAsFavoritor::FavoriteScopes
 
-  belongs_to :user, dependent: :destroy
-  belongs_to(:place)
+  belongs_to :user
+  belongs_to :place, dependent: :destroy
 
   
 end

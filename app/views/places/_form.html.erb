@@ -1,4 +1,5 @@
-<%= form_with(model: place) do |form| %>
+
+<%= form_with(model: place, local: false) do |form| %>
   <% if place.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>

@@ -4,7 +4,7 @@ require 'json'
 
 class PlacesController < ApplicationController
   before_action :set_place, only: %i[ show edit update destroy ]
-
+# after_action :create_favorite, only: :create
 
   def home
     render "places/home"
@@ -30,23 +30,6 @@ class PlacesController < ApplicationController
   def edit
   end
 
-  def favorite
-    #debugger.
-    @restaurant = Place.find(params[:id])
-    current_user.favorited_restaurants << @restaurant
-    redirect_to @restaurant, notice: 'Restaurant added to favorites'
-  end
-
-  def unfavorite
-    @restaurant = Place.find(params[:id])
-    current_user.favorited_restaurants.delete(@restaurant)
-    redirect_to @restaurant, notice: 'Restaurant removed from favorites'
-  end
-
-  def favorite_places
-    @favorite_places = current_user.favorites.map(&:place)
-  end
-
   # POST /places or /places.json
   def create
     # params
@@ -56,16 +39,16 @@ class PlacesController < ApplicationController
     # yelp_place_id???
 
     @place = Place.new(place_params)
-    price = place_params[:price].length
-    @place.price = price
+    # price = place_params[:price].length
+    # @place.price = price
     @place.favorites.build(
       user: current_user
     )
-    # pp @place.name
     respond_to do |format|
       if @place.save
-        format.html { redirect_to place_url(@place), notice: "Place was successfully created." }
+        format.html { redirect_to favorites_url, notice: "Place was successfully created." }
         format.json { render :show, status: :created, location: @place }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @place.errors, status: :unprocessable_entity }
@@ -91,13 +74,16 @@ class PlacesController < ApplicationController
     @place.destroy
 
     respond_to do |format|
-      format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
+      format.html { redirect_to favorites_url, notice: "Place was successfully destroyed." }
       format.json { head :no_content }
+     
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+
     def set_place
       @place = Place.find(params[:id])
     end

@@ -1,13 +1,9 @@
+
 <%= form_with url: "/search", method: :get do |form| %>
   <div class="container d-flex flex-column justify-content-center align-items-center">
   <div>
     <%= form.label :location, style: "display: block" %>
     <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price %>
   </div>
 
   <div>
