@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   def index
     query_string = {
       location: search_params.fetch("location", "Chicago"),
-      price: search_params.fetch("price", "1").to_i,
+      # price: "price".to_i,
       limit: 20,
       sort_by: "best_match",
       categories: search_params.fetch("categories", "restaurants"),
@@ -33,6 +33,6 @@ class SearchController < ApplicationController
   private
 
   def search_params
-    params.permit(:location, :price, :categories)
+    params.permit(:location, :categories)
   end
 end

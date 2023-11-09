@@ -39,8 +39,8 @@ class PlacesController < ApplicationController
     # yelp_place_id???
 
     @place = Place.new(place_params)
-    price = place_params[:price].length
-    @place.price = price
+    # price = place_params[:price].length
+    # @place.price = price
     @place.favorites.build(
       user: current_user
     )
