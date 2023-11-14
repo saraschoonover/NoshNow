@@ -7,7 +7,8 @@ class YelpClient
 
   def random_business
     # TODO: return an array of 1 business
-    throw "TODO: return an array of 1 business"
+    businesses = search_businesses
+    businesses.sample
   end
 
 
