@@ -1,19 +1,14 @@
-<div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
-  
-   <% if params[:random_selection] == '1' %>
-    <% if @random_restaurant %>
-      <%= render "search/restaurant", restaurant: @random_restaurant %>
-    <% else %>
-      <p>No random restaurant available.</p>
-    <% end %>
+
+   <div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
+  <% if @restaurants.empty? %>
+    <p>No restaurants match that criteria.</p>
+  <% elsif params[:commit] == "I'm feeling lucky" %>
+    <%= render "random", @restaurant %>
   <% else %>
-    <% if @restaurants.empty? %>
-      <p>No restaurants match that criteria.</p>
-    <% else %>
-      <% @restaurants.each do |restaurant| %>
-        <%= render "search/restaurant", restaurant: restaurant %>
-      <% end %>
+    <% @restaurants.each do |restaurant| %>
+      <%= render "search/restaurant", restaurant: restaurant %>
     <% end %>
   <% end %>
- 
 </div>
+
+ 
