@@ -1,8 +1,19 @@
 <div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
-  <% if @restaurants.empty? %>
-    <p>No restaurants match that criteria.</p>
+  
+   <% if params[:random_selection] == '1' %>
+    <% if @random_restaurant %>
+      <%= render "search/restaurant", restaurant: @random_restaurant %>
+    <% else %>
+      <p>No random restaurant available.</p>
+    <% end %>
+  <% else %>
+    <% if @restaurants.empty? %>
+      <p>No restaurants match that criteria.</p>
+    <% else %>
+      <% @restaurants.each do |restaurant| %>
+        <%= render "search/restaurant", restaurant: restaurant %>
+      <% end %>
+    <% end %>
   <% end %>
-  <% @restaurants.each do |restaurant| %>
-    <%= render "search/restaurant", restaurant: restaurant %>
-  <% end %>
+ 
 </div>

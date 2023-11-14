@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_160750) do
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
-    t.integer "price"
+    t.string "price"
     t.string "location"
     t.string "category"
     t.float "rating"

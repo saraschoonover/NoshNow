@@ -7,7 +7,7 @@
 #  image_url  :string
 #  location   :string
 #  name       :string
-#  price      :integer
+#  price      :string
 #  rating     :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

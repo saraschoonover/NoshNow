@@ -8,7 +8,7 @@
   <div class="search-card-body">
     <p><%= restaurant.fetch("categories").map { |c| c["title"] }.join(", ") %></p>
     <p>Rating: <%= star_rating(restaurant.fetch("rating").to_i) %></p>
-    <p>Price: <%= dollar_rating(restaurant.fetch("price").to_i) %></p>
+    <p>Price: <%= restaurant.fetch("price") %></p>
     <p>Reviews: <%= restaurant.fetch("review_count") %> </p>
     <%= form_with model: @place, url: places_path, local: true do |f| %>
       <%= f.hidden_field "place[name]", value: restaurant["name"]%>
