@@ -7,7 +7,7 @@
       <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
 
     </div>
-    <img class="card-img-top" style="height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;" src="<%= restaurant["image_url"] %>" alt="Card image cap">
+    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="<%= restaurant["image_url"] %>" alt="Card image cap">
 
     <div class="search-card-body">
       <p><%= restaurant.fetch("categories").map { |c| c["title"] }.join(", ") %></p>
