@@ -1,9 +1,11 @@
 <div class="d-flex justify-content-center align-items-center" >
   <div class="card text-center" style="width: 18rem; border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
+  
+
     <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
     <div class="open-now-box d-flex justify-content-center gap-4">
       <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
-      <p><%= restaurant.dig("hours", 0, "is_open_now") ? "Open" : "Closed" %></p>
+
     </div>
     <img class="card-img-top" style="height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;" src="<%= restaurant["image_url"] %>" alt="Card image cap">
 
