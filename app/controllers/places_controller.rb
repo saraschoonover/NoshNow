@@ -6,10 +6,6 @@ class PlacesController < ApplicationController
   before_action :set_place, only: %i[ show edit update destroy ]
 # after_action :create_favorite, only: :create
 
-  def home
-    render "places/home"
-  end
-
   # GET /places or /places.json
   def index
     @places = Place.all

@@ -1,4 +1,16 @@
+<p style="color: green"><%= notice %></p>
 
+<div class="jumbotron jumbotron-fluid">
+  <div class="banner d-flex justify-content-center align-items-center flex-column" style="height: 400px;">
+    <div class="list d-flex justify-content-center align-items-center flex-column">
+      <h2 class="bannerSubtitleIndex">Welcome to NoshNow</h2>
+      <div>
+        <%= render "search/form" %>
+      </div>
+    </div>
+  </div>
+</div>
+   
    <div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
   <% if @restaurants.empty? %>
     <p>No restaurants match that criteria.</p>

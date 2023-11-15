@@ -11,7 +11,5 @@ Rails.application.routes.draw do
   get "profile", to: "users#profile", as: "profile"
   resources :favorites, only: [:index, :destroy]
 
-
-  
-  root "places#home"
+  root "search#index"
 end

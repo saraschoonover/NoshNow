@@ -17,6 +17,7 @@ class YelpClient
     categories: categories,
     rating: "ratings",
     review_count: "review-count",
+    open_now: true
   }.to_query
   url = URI("#{BASE_URL}/businesses/search?#{query_string}")
 

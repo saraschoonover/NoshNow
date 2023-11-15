@@ -1,6 +1,11 @@
+.logo-img {
+  max-width: 100px; /* Adjust the max-width as needed */
+  height: auto;
+}
+
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: rgb(234, 231, 231);
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +13,9 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 100px;
+}
+
+.custom-navbar {
+  margin-top: 0; /* or padding-top: 0; */
 }
