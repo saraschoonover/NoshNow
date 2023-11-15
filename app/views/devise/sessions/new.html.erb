@@ -1,35 +1,31 @@
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
- <div class="page-wrapper">
-    <div class="wrapper">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="card card-2">
-             <div class="card-heading"></div>
+<div class="card mb-3" style="max-width: 650px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img class="img-fluid rounded-start" src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8fDA%3D">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="title">Log In</h2>
+        <form method="POST">
+          <div class="input-group">
+              <%= f.input :email,
+            required: false,
+            autofocus: true,
+            input_html: { autocomplete: "email" } %>
           </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="card-body">
-            <h2 class="title">Log In</h2>
-            <form method="POST">
-              <div class="input-group">
-                 <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-              </div>
-               <div class="input-group">
-                 <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-                 <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              </div>
-              <button type="submit" class="btn btn-primary">Sign In</button>
-              <%= render "devise/shared/links" %>
-             </form>
+            <div class="input-group">
+              <%= f.input :password,
+            required: false,
+            input_html: { autocomplete: "current-password" } %>
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
-        </div>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+          <%= render "devise/shared/links" %>
+          </form>
       </div>
     </div>
+  </div>
 </div>
 <% end %>
