@@ -20,6 +20,9 @@
 #  fk_rails_...  (place_id => places.id)
 #  fk_rails_...  (user_id => users.id)
 #
+
+# TODO: index user places 
+# https://stackoverflow.com/a/6170023
 class Favorite < ApplicationRecord
 
   belongs_to :user

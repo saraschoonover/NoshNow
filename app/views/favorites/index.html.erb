@@ -1,8 +1,8 @@
-<div class="container ">
+<div class="container">
   <h1 class="d-flex justify-content-center align-items-center m-3"><%= current_user.username.capitalize %>'s Favorites</h1>
   <div class="card-container d-flex justify-content-center align-items-center flex-wrap">
     <% @favorite_places.each do |place| %>
-      <div class="card d-flex justify-content-center align-items-center" style="width: 18rem; border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
+      <div id="<%= dom_id(place) %>"class="card d-flex justify-content-center align-items-center" style="width: 18rem; border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
         <h5 class="card-title"><%= place.fetch("name") %></h5>
         <p><%= place.location %></p>
         <img class="card-img-top" style="height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;" src="<%= place["image_url"] %>" alt="Card image cap">
@@ -10,7 +10,7 @@
         <p><%= place.fetch("category") %></p>
         <p>Rating: <%= star_rating(place.rating.to_i) %></p>
         <p>Price: <%= place.price %></p>
-          <%= button_to favorite_path(place), method: :delete, class: "btn btn-primary" do %>
+          <%= button_to favorite_path(place), method: :delete, class: "btn btn-primary", remote: true do %>
             <i class="fa-solid fa-trash-can"></i>
           <% end %>
 

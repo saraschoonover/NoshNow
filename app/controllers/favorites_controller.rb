@@ -17,11 +17,15 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = current_user.favorites.find_by(place_id: params[:id])
 
-    if @favorite
-      @favorite.destroy 
-      redirect_to favorites_url, notice: "Place unfavorited successfully."
-    else
-      redirect_to favorites_url, alert: "Failed to unfavorite the place."
+    respond_to do |format|
+      if @favorite
+        @favorite.destroy
+        format.html { redirect_back favorites_url, fallback_location: root_url, notice: "Place unfavorited successfully." }
+        format.json { render :show, status: :created, location: @place }
+        format.js
+      else
+        redirect_to favorites_url, fallback_location: favorites_url, alert: "Failed to unfavorite the place."
+      end
     end
   end
 

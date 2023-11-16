@@ -28,21 +28,19 @@ class PlacesController < ApplicationController
 
   # POST /places or /places.json
   def create
-    # params
-    # {
-    #   "restaurant_id"=>"XOo0oa5sXCZGjKXapIN95w"
-    # }
-    # yelp_place_id???
+    # TODO: consider moving "favorite" actions to favorites controller
 
-    @place = Place.new(place_params)
+    # TODO: consider including yelp_id (external_id)
+    @place = Place.new(place_params.except(:api_id))
     # price = place_params[:price].length
     # @place.price = price
+    @api_id = place_params[:api_id]
     @place.favorites.build(
       user: current_user
     )
     respond_to do |format|
       if @place.save
-        format.html { redirect_to favorites_url, notice: "Place was successfully created." }
+        format.html { redirect_to root_url, fallback_location: favorites_url, notice: "Place was successfully created." }
         format.json { render :show, status: :created, location: @place }
         format.js
       else
@@ -86,6 +84,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.require(:place).permit(:name, :image_url, :price, :location, :category, :rating)
+      params.require(:place).permit(:name, :image_url, :price, :location, :category, :rating, :api_id)
     end
 end
