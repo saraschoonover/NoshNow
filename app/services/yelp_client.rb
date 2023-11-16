@@ -2,7 +2,7 @@ class YelpClient
   BASE_URL = "https://api.yelp.com/v3".freeze
 
   def initialize
-    @api_key = ENV.fetch("YELP_KEY")
+    @api_key = ENV['YELP_KEY']
   end
 
   def search_businesses(params = {})
