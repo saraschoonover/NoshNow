@@ -10,29 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_02_160750) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_18_163712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "place_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_favorites_on_place_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
-  create_table "places", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "price"
     t.string "location"
     t.string "category"
     t.float "rating"
+    t.bigint "user_id", null: false
+    t.string "yelp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +44,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_160750) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "favorites", "places"
   add_foreign_key "favorites", "users"
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   get("/search", to: "search#index")
 
   resources :recommendations

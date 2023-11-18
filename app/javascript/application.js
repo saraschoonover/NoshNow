@@ -5,5 +5,5 @@ import "controllers"
 import jquery from "jquery";
 window.jQuery = jquery;
 window.$ = jquery;
-// import Rails from "@rails/ujs"
-// Rails.start();
+import Rails from "@rails/ujs"
+//Rails.start();

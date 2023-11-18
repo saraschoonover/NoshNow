@@ -1,1 +1,5 @@
 console.log("CREATED")
+
+var theHeart = $("#yelp_place_<%= @api_id %>_heart")
+theHeart.removeClass("fa-regular")
+theHeart.addClass("fa-solid")
