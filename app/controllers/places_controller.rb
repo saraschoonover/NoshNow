@@ -28,9 +28,9 @@ class PlacesController < ApplicationController
 
   # POST /places or /places.json
   def create
-    # TODO: consider moving "favorite" actions to favorites controller
+  #   # TODO: consider moving "favorite" actions to favorites controller
 
-    # TODO: consider including yelp_id (external_id)
+  #   # TODO: consider including yelp_id (external_id)
     @place = Place.new(place_params.except(:api_id))
     # price = place_params[:price].length
     # @place.price = price
@@ -48,7 +48,7 @@ class PlacesController < ApplicationController
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
-  end
+   end
 
   # PATCH/PUT /places/1 or /places/1.json
   def update
