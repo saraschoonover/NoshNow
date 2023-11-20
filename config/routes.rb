@@ -2,11 +2,7 @@ Rails.application.routes.draw do
   resources :favorites
   get("/search", to: "search#index")
 
-  resources :recommendations
-  resources :places do
-    resources :favorites, only: [:create]
-  end
-  
+  get 'search/:id', to: 'search#show', as: 'search_show'
   devise_for :users
 
   get "profile", to: "users#profile", as: "profile"

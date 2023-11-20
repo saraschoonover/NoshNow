@@ -6,22 +6,22 @@ class YelpClient
   end
 
   def search_businesses(params = {})
-  location = params.fetch("location", "Chicago")
-  categories = params.fetch("categories", "restaurants")
+    location = params.fetch("location", "Chicago")
+    categories = params.fetch("categories", "restaurants")
 
-  query_string = {
-    location: location,
-    price: "1, 2, 3, 4",
-    limit: 20,
-    sort_by: "best_match",
-    categories: categories,
-    rating: "ratings",
-    review_count: "review-count",
-    open_now: true
-  }.to_query
-  url = URI("#{BASE_URL}/businesses/search?#{query_string}")
+    query_params = {
+      location: location,
+      price: "1,2,3,4",
+      limit: 20,
+      sort_by: "best_match",
+      categories: categories,
+      open_now: true
+    }
 
-  fetch(url).fetch("businesses") || []
+    query_string = URI.encode_www_form(query_params)
+    url = URI("#{BASE_URL}/businesses/search?#{query_string}")
+
+    fetch(url).fetch("businesses") || []
   end
 
   def random_business
@@ -29,8 +29,11 @@ class YelpClient
     businesses.sample
   end
 
+  def get_business(yelp_id)
+    url = URI("#{BASE_URL}/businesses/#{yelp_id}")
+    fetch(url)
+  end
 
- 
   private
 
   def fetch(url)

@@ -1,27 +1,11 @@
-<div id="yelp_place_<%= restaurant["id"] %>" class="d-flex justify-content-center align-items-center" >
-  <div class="card text-center" style="width: 18rem; border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
+
+
+
+<div class="card text-center" style="width: 18rem; border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);">
+  <img class="card-img-top" src=<%= restaurant.fetch("image_url") %> alt="Card image cap">
+  <div class="card-body">
     <h5 class="card-title"><%= restaurant.fetch("name") %></h5>
-    <div class="open-now-box d-flex justify-content-center gap-4">
-      <p><%= restaurant.dig("location", "city") %>, <%= restaurant.dig("location", "state") %></p>
-    </div>
-    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="<%= restaurant["image_url"] %>" alt="Card image cap">
-    <div class="search-card-body">
-      <p><%= restaurant.fetch("categories").map { |c| c["title"] }.join(", ") %></p>
-      <p>Rating: <%= star_rating(restaurant.fetch("rating").to_i) %></p>
-      <p>Price: <%= restaurant.fetch("price") %></p>
-      <p>Reviews: <%= restaurant.fetch("review_count") %> </p>
-      <%= form_with(model: Favorite.new, local: false, url: favorites_path) do |f| %>
-        <%= f.hidden_field :name, value: restaurant["name"]%>
-        <%= f.hidden_field :image_url, value: restaurant["image_url"]%>
-        <%= f.hidden_field :price, value: restaurant["price"]%>
-        <%= f.hidden_field :location, value: "#{restaurant["location"]["city"]}, #{restaurant["location"]["state"]}" %>
-        <%= f.hidden_field :category, value: params[:categories] %>
-        <%= f.hidden_field :rating, value: restaurant["rating"] %>
-       
-       <%= button_tag type: 'submit', id: restaurant.fetch("id"), class: 'btn btn-fave' do %>
-        <i id="yelp_place_<%= restaurant["id"] %>_heart" class="fa-regular fa-heart heart fa-xl"></i>
-       <% end %>
-      <% end %>
-    </div>
+   
+    <%= link_to restaurant.fetch("name"), search_show_path(id: restaurant["id"]) %>
   </div>
 </div>

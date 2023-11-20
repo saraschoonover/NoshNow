@@ -21,12 +21,12 @@ class FavoritesController < ApplicationController
 
   # POST /favorites or /favorites.json
   def create
-    puts "Params received: #{params.inspect}"
+   
     @favorite = current_user.favorites.build(favorite_params)
 
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_to favorites_url(@favorite), notice: "Favorite was successfully created." }
+        format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
         format.json { render :show, status: :created, location: @favorite }
       else
         format.html { render :new, status: :unprocessable_entity }

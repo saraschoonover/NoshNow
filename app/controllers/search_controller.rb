@@ -8,6 +8,11 @@ class SearchController < ApplicationController
                   end
   end
 
+  def show
+    yelp_id = params[:id]
+    @restaurant = YelpClient.new.get_business(yelp_id)
+  end
+
   private
 
   def search_params
