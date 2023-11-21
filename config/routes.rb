@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-  resources :favorites
-  get("/search", to: "search#index")
-
-  get 'search/:id', to: 'search#show', as: 'search_show'
   devise_for :users
 
-  get "profile", to: "users#profile", as: "profile"
+  resources :favorites
+  resources :yelp_places, only: %i[ index show ]
   resources :favorites, only: [:index, :destroy]
 
-  root "search#index"
+  get "profile", to: "users#profile", as: "profile"
+
+  root "yelp_places#index"
 end

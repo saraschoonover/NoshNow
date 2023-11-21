@@ -21,19 +21,28 @@ class FavoritesController < ApplicationController
 
   # POST /favorites or /favorites.json
   def create
-   
-    @favorite = current_user.favorites.build(favorite_params)
-
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+    existing_favorite = current_user.favorites.find_by(yelp_id: params[:favorite][:yelp_id])
+  
+    if existing_favorite
+      # Restaurant is already favorited, handle accordingly (e.g., show an error message)
+      flash.now[:alert] = "You've already favorited this restaurant."
+      render 'existing_favorite_error', status: :unprocessable_entity
+    else
+      @favorite = current_user.favorites.build(favorite_params)
+  
+      respond_to do |format|
+        if @favorite.save
+          format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
+          format.json { render :show, status: :created, location: @favorite }
+          format.js
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
+  
 
   # PATCH/PUT /favorites/1 or /favorites/1.json
   def update
@@ -55,17 +64,18 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to favorites_url, notice: "Favorite was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_favorite
+    @favorite = Favorite.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def favorite_params
-      params.require(:favorite).permit(:name, :image_url, :price, :location, :category, :rating)
-    end
+  # Only allow a list of trusted parameters through.
+  def favorite_params
+    params.require(:favorite).permit(:name, :image_url, :price, :location, :category, :rating, :yelp_id)
+  end
 end

@@ -14,6 +14,49 @@
   box-shadow: 0px 0px 5px rgb(230, 230, 230);
   opacity: 1;
 }
+//SEARCH RESTAURANT PARTIAL CARD
+.search-card {
+  margin: 50px;
+ }
+
+ .search-card:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+ }
+
+.search-card-img-top{
+  width: 100%;
+  height: 200px;
+  box-shadow: 0px 0px 5px rgb(230, 230, 230);
+  opacity: 1;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+
+.search-card-image-container{
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.search-card {
+  width: 18rem; 
+  border: 1px solid #dee2e6; 
+  border-radius: 15px; 
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin: 50px;
+}
+
+.search-card-title{
+  font-size: 28px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
 
 .card-heading {
   background: url("https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8fDA%3D") top left;

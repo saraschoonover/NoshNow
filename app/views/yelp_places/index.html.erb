@@ -1,0 +1,31 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="banner d-flex justify-content-center align-items-center flex-column">
+    <video autoplay loop muted playsinline class="banner-video">
+      <source src="<%= asset_path('bananavideo.mp4') %>" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+      <div class="list d-flex flex-column justify-content-center align-items-center">
+        <h2 class="bannerSubtitleIndex">Welcome to NoshNow</h2>
+        <h2 class="subtitle">This is my subtitle</h2>
+      </div>
+      
+  </div>
+</div>
+
+
+<%= render "search" %>
+
+   
+<div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
+  <% if @yelp_places.empty? %>
+    <p>No restaurants match that criteria.</p>
+  <% elsif params[:commit] == "I'm feeling lucky" %>
+    <%= render "random", @yelp_place %>
+  <% else %>
+    <% @yelp_places.each do |yelp_place| %>
+      <%= render "yelp_place", yelp_place: yelp_place %>
+    <% end %>
+  <% end %>
+</div>
+
+ 

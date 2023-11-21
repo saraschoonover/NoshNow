@@ -1,32 +1,15 @@
-<div id="<%= dom_id favorite %>">
-  <p>
-    <strong>Name:</strong>
-    <%= favorite.name %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <%= favorite.image_url %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= favorite.price %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= favorite.location %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= favorite.category %>
-  </p>
-
-  <p>
-    <strong>Rating:</strong>
-    <%= favorite.rating %>
-  </p>
-
-</div>
+<%= form_with(model: Favorite.new, local: false, url: favorites_path) do |f| %>
+          <%= f.hidden_field :name, value: @favorite["name"]%>
+          <%= f.hidden_field :image_url, value: @favorite["image_url"]%>
+          <%= f.hidden_field :price, value: @favorite["price"]%>
+          <%= f.hidden_field :location, value: "#{@favorite["location"]["city"]}, #{@favorite["location"]["state"]}" %>
+          <%= f.hidden_field :category, value: params[:categories] %>
+        
+          <%= f.hidden_field :yelp_id, value: @favorite["id"] %>
+          <%= button_tag type: 'submit', id: @favorite.fetch("id"), class: 'btn btn-fave' do %>
+            <i class="fa-regular fa-heart heart fa-xl"></i>
+          <% end %>
+          <%= link_to @favorite["url"], target: "_blank", class: "btn btn-primary" do %>
+            <i class="fa-brands fa-yelp"></i> View on Yelp
+          <% end %>
+        <% end %>
