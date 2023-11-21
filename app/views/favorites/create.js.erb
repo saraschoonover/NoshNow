@@ -1,0 +1,9 @@
+
+var favorite = $("#yelp_place_<%= @favorite["yelp_id"] %>");
+
+
+favorite.find('.btn-fave').click(function() {
+  var button = $(this);
+  var heartIcon = button.find('.heart');
+  heartIcon.toggleClass('fa-regular fa-solid');
+});

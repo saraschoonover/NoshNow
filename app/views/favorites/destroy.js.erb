@@ -1,4 +1,5 @@
 console.log("DESTROY")
-$("#place_<%= @favorite.id %>").fadeOut(500, function() {
+
+$("#<%= dom_id(@favorite) %>").fadeOut(500, function() {
   $(this).remove();
 });
