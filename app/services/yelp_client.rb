@@ -6,6 +6,8 @@ class YelpClient
   end
 
   def search_businesses(params = {})
+    # removes empty string values
+    params.compact_blank!
     location = params.fetch("location", "Chicago")
     categories = params.fetch("categories", "restaurants")
 

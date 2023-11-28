@@ -1,5 +1,7 @@
 console.log("DESTROY")
 
-$("#<%= dom_id(@favorite) %>").fadeOut(500, function() {
+//if else 
+
+$("#yelp_place_<%= @favorite.yelp_id %>").fadeOut(500, function() {
   $(this).remove();
 });

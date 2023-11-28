@@ -1,4 +1,4 @@
-<div id="yelp_place_<%= @yelp_place["id"] %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 1150px;">
+<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 1150px;">
   <div class="row g-0">
     <div class="col-md-4">
       <img class="img-fluid rounded-start-4" src="<%= @yelp_place["image_url"] %>">
@@ -9,7 +9,8 @@
         <p>Rating: <%= star_rating(@yelp_place.fetch("rating").to_i) %></p>
         <p>Price: <%= @yelp_place.fetch("price") %></p>
         <p>Reviews: <%= @yelp_place.fetch("review_count") %> </p>
-        <%= render "form" %>
+
+        <%= render "favorites/form", favorite: @favorite, yelp_place: @yelp_place  %>
       </div>
     </div>
   </div>

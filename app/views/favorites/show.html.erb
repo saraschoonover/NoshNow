@@ -1,10 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @favorite %>
+<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 1150px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img class="img-fluid rounded-start-4" src="<%= @favorite["image_url"] %>">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p><%= @favorite.fetch("categories") %></p>
+        <p>Rating: <%= star_rating(@favorite.fetch("rating").to_i) %></p>
+        <p>Price: <%= @favorite.fetch("price") %></p>
+        <p>Reviews: <%= @favorite.fetch("review_count") %> </p>
 
-<div>
-  <%= link_to "Edit this favorite", edit_favorite_path(@favorite) %> |
-  <%= link_to "Back to favorites", favorites_path %>
-
-  <%= button_to "Destroy this favorite", @favorite, method: :delete %>
+        <%= render "form", favorite: @favorite, yelp_place: @yelp_place  %>
+      </div>
+    </div>
+  </div>
 </div>
+       
+       <%= link_to "Back to favorites", favorites_path, class: "btn btn-secondary" %>
+       <%= button_to "Destroy this favorite", @favorite, method: :delete, class: "btn btn-danger" %>
+    
