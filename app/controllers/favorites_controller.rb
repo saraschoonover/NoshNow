@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
   # GET /favorites or /favorites.json
   def index
     @favorites = Favorite.all
+    
   end
 
   # GET /favorites/1 or /favorites/1.json
@@ -13,6 +14,7 @@ class FavoritesController < ApplicationController
   # GET /favorites/new
   def new
     @favorite = Favorite.new
+
   end
 
   # GET /favorites/1/edit
@@ -21,24 +23,17 @@ class FavoritesController < ApplicationController
 
   # POST /favorites or /favorites.json
   def create
-    existing_favorite = current_user.favorites.find_by(yelp_id: params[:favorite][:yelp_id])
-  
-    if existing_favorite
-      # Restaurant is already favorited, handle accordingly (e.g., show an error message)
-      flash.now[:alert] = "You've already favorited this restaurant."
-      render 'existing_favorite_error', status: :unprocessable_entity
-    else
-      @favorite = current_user.favorites.build(favorite_params)
-  
-      respond_to do |format|
-        if @favorite.save
-          format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
-          format.json { render :show, status: :created, location: @favorite }
-          format.js
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @favorite.errors, status: :unprocessable_entity }
-        end
+    @favorite = current_user.favorites.build(favorite_params)
+
+    respond_to do |format|
+      if @favorite.save
+        format.html { redirect_to favorite_url(@favorite), notice: "Favorite was successfully created." }
+        format.json { render :show, status: :created, location: @favorite }
+        format.js
+      else
+        format.js { render :create, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @favorite.errors, status: :unprocessable_entity }
       end
     end
   end

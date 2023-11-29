@@ -6,6 +6,8 @@ class YelpClient
   end
 
   def search_businesses(params = {})
+    # removes empty string values
+    params.compact_blank!
     location = params.fetch("location", "Chicago")
     categories = params.fetch("categories", "restaurants")
 
@@ -21,11 +23,13 @@ class YelpClient
     query_string = URI.encode_www_form(query_params)
     url = URI("#{BASE_URL}/businesses/search?#{query_string}")
 
+    # TODO: map to YelpPlace[]
     fetch(url).fetch("businesses") || []
   end
 
   def random_business
     businesses = search_businesses
+    # TODO: map to YelpPlace
     businesses.sample
   end
 

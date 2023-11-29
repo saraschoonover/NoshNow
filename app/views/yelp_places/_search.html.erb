@@ -1,24 +1,30 @@
-<%= form_with url: "/yelp_places", method: :get, class: "container mt-4", remote: true do |form| %>
+<div class="search-container">
+  <%= form_with url: "/yelp_places", method: :get, class: "container mt-4", remote: true do |form| %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :location, class: "mb-2", style: "display: block" %>
-        <%= form.text_field :location, class: "form-control", placeholder: "Chicago, IL" %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-floating">
+          <%= form.text_field :location, class: "form-control", placeholder: "Chicago, IL", value: "Chicago, IL" %>
+          <%= form.label :location %>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="form-floating">
+          <%= form.text_field :categories, value: params[:categories], class: "form-control" %>
+          <%= form.label :categories %>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :category, class: "mb-2", style: "display: block" %>
-        <%= form.text_field :categories, class: "form-control" %>
+    <div class="row align-items-center justify-content-between mt-3">
+      <div class="col">
+        <%= form.submit "Search", type: "submit", class: "btn btn-primary w-100" %>
+      </div>
+      <div class="col">
+        <%= form.submit "I'm feeling lucky", class: "btn btn-outline-primary w-100" %>
       </div>
     </div>
-  </div>
 
-  <div class="d-flex align-items-center justify-content-between">
-    <%= form.submit "Search", type: "submit", class: "btn btn-primary me-3" %>
-    <%= form.submit "I'm feeling lucky", class: "btn btn-outline-primary" %>
-  </div>
-
-<% end %>
+  <% end %>
+</div>

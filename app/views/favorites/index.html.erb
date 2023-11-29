@@ -2,7 +2,7 @@
   <h1 class="m-3"><%= current_user.username.capitalize %>'s Favorites</h1>
   <div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
     <% @favorites.each do |favorite| %>
-      <div id="<%= dom_id(favorite) %>" class="search-card">
+      <div id="yelp_place_<%= favorite.yelp_id %>" class="search-card">
         <div class="search-card-image-container position-relative">
           <%= link_to favorite_path(favorite), class: "image-link" do %>
             <img class="search-card-img-top" src="<%= favorite.fetch("image_url") %>" alt="Card image cap">
@@ -10,12 +10,14 @@
           <h5 class="search-card-title">
             <%= favorite.fetch("name") %>
           </h5>
-          <%= button_to favorite_path(favorite), method: :delete, remote: true, class: "btn btn-primary delete-button position-absolute bottom-0 start-0" do %>
+            <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave position-absolute top-0 end-0' do %>
+              <i class="fa-solid fa-heart heart fa-xl"></i>
+            <% end %>
+          <%= button_to favorite_path(favorite), method: :delete, remote: true, class: "btn btn-delete delete-button position-absolute bottom-0 start-0" do %>
             <i class="fa-solid fa-trash-can"></i>
           <% end %>
         </div>
       </div>
     <% end %>
   </div>
-
 </div>
