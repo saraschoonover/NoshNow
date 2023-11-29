@@ -20,15 +20,15 @@
 #  index_users_on_username              (username) UNIQUE
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  #serialize :favorites, Array
+       # Include default devise modules. Others available are:
+       # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+       devise :database_authenticatable, :registerable,
+       :recoverable, :rememberable, :validatable
+       #serialize :favorites, Array
 
-        #  validates :username, presence: true
-        #  validates :username, uniqueness: true
-        has_many :favorites, dependent: :destroy
-        has_many :favorited_restaurants, through: :favorites, source: :place
-  
+       #  validates :username, presence: true
+       #  validates :username, uniqueness: true
+
+       #  has_ many :favorited_restaurants, through: :favorites, source: :place
+       has_many  :favorites, class_name: "Favorite", foreign_key: "user_id", dependent: :destroy
 end

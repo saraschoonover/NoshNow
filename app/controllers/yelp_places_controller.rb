@@ -7,21 +7,15 @@ class YelpPlacesController < ApplicationController
                     YelpClient.new.search_businesses(search_params)
                   end
 
-    # TODO: refactor into YelpPlace class
-    @yelp_places.map do |place|
-      if Favorite.find_by(yelp_id: place["id"]).present?
-        place["saved"] = true
-      else
-        place["saved"] = false
-      end
-    end
+    YelpPlace.decorate_with_saved_flag(@yelp_places, current_user)
+
+    
   end
 
   def show
     yelp_id = params[:id]
     @yelp_place = YelpClient.new.get_business(yelp_id)
-    @fave = Favorite.find_by(yelp_id: yelp_id, user_id: current_user.id)
-    @favorited = @a_fave.present?
+    
     # TODO: maybe this could be a 1-liner (eg Favorite.new.merge(@yelp_place))
     @favorite = Favorite.new(
       name: @yelp_place["name"],
@@ -30,7 +24,10 @@ class YelpPlacesController < ApplicationController
       location: "#{@yelp_place["location"]["city"]}, #{@yelp_place["location"]["state"]}",
       rating: @yelp_place["rating"],
       yelp_id: @yelp_place["id"]
+      
     )
+
+    
   end
 
   private

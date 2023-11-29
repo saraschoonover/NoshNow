@@ -5,15 +5,18 @@
   <%= f.hidden_field :location %>
   <%= f.hidden_field :category %>
   <%= f.hidden_field :yelp_id %>
-
+  
   <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave' do %>
-     <% if @favorited %>
-            <i class="fa-solid fa-heart heart fa-xl"></i>
-          <% else %>
-            <i class="fa-regular fa-heart heart fa-xl"></i>
-          <% end %>
+    <% if Favorite.find_by("yelp_id": @favorite.yelp_id).present? %>
+      <i class="fa-solid fa-heart heart fa-xl"></i>
+    <% else %>
+      <i class="fa-regular fa-heart heart fa-xl"></i>
+    <% end %>
   <% end %>
-  <%= link_to yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
-    <i class="fa-brands fa-yelp"></i> View on Yelp
+
+  <% if !current_page?(favorite_path) %>
+    <%= link_to yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
+      <i class="fa-brands fa-yelp"></i> View on Yelp
+    <% end %>
   <% end %>
 <% end %>

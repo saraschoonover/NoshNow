@@ -25,7 +25,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Favorite < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, required: true, class_name: "User", foreign_key: "user_id"
 
   validates_uniqueness_of :yelp_id, scope: :user_id, message: "You've already favorited this restaurant."
 end
