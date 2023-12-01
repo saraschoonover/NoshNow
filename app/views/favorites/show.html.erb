@@ -8,6 +8,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <p><%= @favorite.fetch("categories") %></p>
+        <h3><%= @favorite.fetch("name") %></h3>
         <p>Rating: <%= star_rating(@favorite.fetch("rating").to_i) %></p>
         <p>Price: <%= @favorite.fetch("price") %></p>
         <p>Reviews: <%= @favorite.fetch("review_count") %> </p>

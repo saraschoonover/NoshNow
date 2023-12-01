@@ -4,19 +4,24 @@
   <%= f.hidden_field :price %>
   <%= f.hidden_field :location %>
   <%= f.hidden_field :category %>
+  <%= f.hidden_field :rating %>
+   <%= f.hidden_field :review_count %>
   <%= f.hidden_field :yelp_id %>
-  
-  <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave' do %>
-    <% if Favorite.find_by("yelp_id": @favorite.yelp_id).present? %>
+  <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
+    <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
       <i class="fa-solid fa-heart heart fa-xl"></i>
     <% else %>
       <i class="fa-regular fa-heart heart fa-xl"></i>
     <% end %>
   <% end %>
-
   <% if !current_page?(favorite_path) %>
     <%= link_to yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
       <i class="fa-brands fa-yelp"></i> View on Yelp
     <% end %>
+  <% else %>
+    <%= link_to @yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
+      <i class="fa-brands fa-yelp"></i> View on Yelp
+    <% end %>
+    <%= link_to "Back to favorites", favorites_path, class: "btn btn-secondary" %>
   <% end %>
 <% end %>

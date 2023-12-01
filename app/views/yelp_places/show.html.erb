@@ -1,7 +1,7 @@
-<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 1150px;">
+<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mb-3 shadow rounded-4">
   <div class="row g-0">
     <div class="col-md-4">
-      <img class="img-fluid rounded-start-4" src="<%= @yelp_place["image_url"] %>">
+      <img class="img-fluid object-fit-sm-contain rounded-start-4" src="<%= @yelp_place["image_url"] %>">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -9,9 +9,33 @@
         <p>Rating: <%= star_rating(@yelp_place.fetch("rating").to_i) %></p>
         <p>Price: <%= @yelp_place.fetch("price") %></p>
         <p>Reviews: <%= @yelp_place.fetch("review_count") %> </p>
-
         <%= render "favorites/form", favorite: @favorite, yelp_place: @yelp_place  %>
       </div>
     </div>
   </div>
 </div>
+
+<div>
+   <%= link_to 'See Reviews', "#reviews-section", class: 'btn btn-secondary' %>
+</div>
+
+<% @yelp_reviews.each_with_index do |review, index| %>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading<%= index %>">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+          <%= review["user"].fetch("name") %>
+        </button>
+      </h2>
+      <div id="collapse<%= index %>" class="accordion-collapse collapse" aria-labelledby="heading<%= index %>" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <p><%= review["text"] %></p> 
+          <%= link_to review["url"], target: "_blank", class: "btn btn-primary" do %>
+            <i class="fa-brands fa-yelp"></i> See More
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
