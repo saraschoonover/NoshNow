@@ -1,0 +1,38 @@
+
+
+.accordion {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.accordion-item {
+  background-color: #CBF3F0; /* Light teal */
+  border: 1px solid #2EC4B6; /* Darker teal border */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background-color: #2EC4B6; /* Darker teal */
+  color: #fff;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.accordion-button {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.accordion-body {
+  padding: 15px;
+}
+
+/* Style to indicate active section */
+.accordion-item.active .accordion-header {
+  background-color: #CBF3F0; /* Light teal for active section */
+}

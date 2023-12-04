@@ -9,6 +9,8 @@ class FavoritesController < ApplicationController
 
   # GET /favorites/1 or /favorites/1.json
   def show
+    yelp_client = YelpClient.new
+    @yelp_place = yelp_client.get_business(@favorite.yelp_id)
   end
 
   # GET /favorites/new

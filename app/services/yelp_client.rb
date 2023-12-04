@@ -19,12 +19,16 @@ class YelpClient
       categories: categories,
       open_now: true
     }
-
     query_string = URI.encode_www_form(query_params)
     url = URI("#{BASE_URL}/businesses/search?#{query_string}")
 
     # TODO: map to YelpPlace[]
     fetch(url).fetch("businesses") || []
+  end
+
+  def get_reviews(yelp_id)
+    url = URI("#{BASE_URL}/businesses/#{yelp_id}/reviews?limit=5&sort_by=yelp_sort")
+    fetch(url).fetch("reviews")
   end
 
   def random_business

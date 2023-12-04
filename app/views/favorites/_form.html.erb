@@ -1,22 +1,47 @@
-<%= form_with(model: favorite, local: false, url: favorites_path) do |f| %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :image_url %>
-  <%= f.hidden_field :price %>
-  <%= f.hidden_field :location %>
-  <%= f.hidden_field :category %>
-  <%= f.hidden_field :yelp_id %>
-  
-  <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave' do %>
-    <% if Favorite.find_by("yelp_id": @favorite.yelp_id).present? %>
-      <i class="fa-solid fa-heart heart fa-xl"></i>
-    <% else %>
-      <i class="fa-regular fa-heart heart fa-xl"></i>
+<% #TODO: combine forms %>
+<% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
+  <% @fav = Favorite.find_by(yelp_id: @favorite.yelp_id) %>
+
+  <% #TODO:  method = favorite.id.present? ? :delete : :post %>
+  <%= form_with(model: @fav, local: false, method: :delete, id: dom_id(@fav), url: favorite_path(@fav)) do |f| %>
+
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :image_url %>
+    <%= f.hidden_field :price %>
+    <%= f.hidden_field :location %>
+    <%= f.hidden_field :category %>
+    <%= f.hidden_field :rating %> 
+    <%= f.hidden_field :review_count %>
+    <%= f.hidden_field :yelp_id %>
+    <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
+        <i class="fa-solid fa-heart heart fa-xl"></i>
     <% end %>
+
+    <% #TODO: move out of form %>
+   
   <% end %>
 
-  <% if !current_page?(favorite_path) %>
-    <%= link_to yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
-      <i class="fa-brands fa-yelp"></i> View on Yelp
+<% else %>
+
+  <%= form_with(model: favorite, local: false, url: favorites_path, id: dom_id(favorite)) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :image_url %>
+    <%= f.hidden_field :price %>
+    <%= f.hidden_field :location %>
+    <%= f.hidden_field :category %>
+    <%= f.hidden_field :rating %>
+    <%= f.hidden_field :review_count %>
+    <%= f.hidden_field :yelp_id %>
+    <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
+      <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
+        <i class="fa-solid fa-heart heart fa-xl"></i>
+      <% else %>
+        <i class="fa-regular fa-heart heart fa-xl"></i>
+      <% end %>
     <% end %>
+
+    <% #TODO: move out of form %>
+    
   <% end %>
+
 <% end %>

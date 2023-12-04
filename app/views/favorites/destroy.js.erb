@@ -5,3 +5,6 @@ console.log("DESTROY")
 $("#yelp_place_<%= @favorite.yelp_id %>").fadeOut(500, function() {
   $(this).remove();
 });
+
+var heartIcon = $(".fa-heart");
+heartIcon.removeClass("fa-solid").addClass("fa-regular");
