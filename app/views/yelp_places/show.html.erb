@@ -1,15 +1,22 @@
-<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mb-3 shadow rounded-4">
+<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 750px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img class="img-fluid object-fit-sm-contain rounded-start-4" src="<%= @yelp_place["image_url"] %>">
+      <img class="img-fluid h-100 rounded-start-4" src="<%= @yelp_place["image_url"] %>">
     </div>
     <div class="col-md-8">
       <div class="card-body">
+      <h3 class="d-flex justify-content-center align-items-center"><%= @yelp_place.fetch("name") %></h3>
+      <p class="d-flex justify-content-center align-items-center"><%= star_rating(@yelp_place.fetch("rating").to_i) %></p>
         <p><%= @yelp_place.fetch("categories").map { |c| c["title"] }.join(", ") %></p>
-        <p>Rating: <%= star_rating(@yelp_place.fetch("rating").to_i) %></p>
+        
         <p>Price: <%= @yelp_place.fetch("price") %></p>
         <p>Reviews: <%= @yelp_place.fetch("review_count") %> </p>
         <%= render "favorites/form", favorite: @favorite, yelp_place: @yelp_place  %>
+        
+      <%= link_to @yelp_place["url"], target: "_blank", class: "btn btn-primary d-flex justify-content-center align-items-center" do %>
+        <i class="fa-brands fa-yelp"></i> View on Yelp
+      <% end %>
+      
       </div>
     </div>
   </div>
@@ -38,4 +45,3 @@
     </div>
   </div>
 <% end %>
-

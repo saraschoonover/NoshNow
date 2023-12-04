@@ -10,12 +10,10 @@
           <h5 class="search-card-title">
             <%= favorite.fetch("name") %>
           </h5>
-            <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave position-absolute top-0 end-0' do %>
-              <i class="fa-solid fa-heart heart fa-xl"></i>
-            <% end %>
-          <%= button_to favorite_path(favorite), method: :delete, remote: true, class: "btn btn-delete delete-button position-absolute bottom-0 start-0" do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
+            <%= button_to favorite_path(favorite), method: :delete, remote: true, class: 'btn btn-fave position-absolute top-0 end-0' do %>
+          <i class="fa-solid fa-heart heart fa-xl"></i>
+        <% end %>
+         
         </div>
       </div>
     <% end %>
