@@ -9,15 +9,17 @@
     <%= f.hidden_field :image_url %>
     <%= f.hidden_field :price %>
     <%= f.hidden_field :location %>
-    <%= f.hidden_field :category %>
+    <%= f.hidden_field :categories %>
     <%= f.hidden_field :rating %> 
     <%= f.hidden_field :review_count %>
     <%= f.hidden_field :yelp_id %>
-    <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
+    <div class="position-absolute top-0 end-0 mt-2 me-2">
+      <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
         <i class="fa-solid fa-heart heart fa-xl"></i>
-    <% end %>
+      <% end %>
+    </div>  
 
-    <% #TODO: move out of form %>
+    
    
   <% end %>
 
@@ -28,20 +30,18 @@
     <%= f.hidden_field :image_url %>
     <%= f.hidden_field :price %>
     <%= f.hidden_field :location %>
-    <%= f.hidden_field :category %>
+    <%= f.hidden_field :categories %>
     <%= f.hidden_field :rating %>
     <%= f.hidden_field :review_count %>
     <%= f.hidden_field :yelp_id %>
-    <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
-      <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
+     <div class="position-absolute top-0 end-0 mt-2 me-2">
+      <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
+         <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
         <i class="fa-solid fa-heart heart fa-xl"></i>
       <% else %>
         <i class="fa-regular fa-heart heart fa-xl"></i>
       <% end %>
-    <% end %>
-
-    <% #TODO: move out of form %>
-    
+      <% end %>
+    </div>  
   <% end %>
-
 <% end %>

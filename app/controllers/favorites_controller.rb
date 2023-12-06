@@ -3,20 +3,19 @@ class FavoritesController < ApplicationController
 
   # GET /favorites or /favorites.json
   def index
-    @favorites = Favorite.all
-    
+    @favorites = current_user.favorites
   end
 
   # GET /favorites/1 or /favorites/1.json
   def show
     yelp_client = YelpClient.new
     @yelp_place = yelp_client.get_business(@favorite.yelp_id)
+    @yelp_reviews = YelpClient.new.get_reviews(@favorite.yelp_id)
   end
 
   # GET /favorites/new
   def new
     @favorite = Favorite.new
-
   end
 
   # GET /favorites/1/edit
@@ -73,6 +72,6 @@ class FavoritesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def favorite_params
-    params.require(:favorite).permit(:name, :image_url, :price, :location, :category, :rating, :yelp_id)
+    params.require(:favorite).permit(:name, :image_url, :price, :location, :categories, :rating, :review_count, :transactions, :yelp_id)
   end
 end

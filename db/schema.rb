@@ -20,7 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_18_163712) do
     t.string "image_url"
     t.string "price"
     t.string "location"
-    t.string "category"
+    t.string "categories"
+    t.string "review_count"
+    t.string "transactions"
     t.float "rating"
     t.bigint "user_id", null: false
     t.string "yelp_id"

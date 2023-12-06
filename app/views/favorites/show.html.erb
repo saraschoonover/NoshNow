@@ -8,31 +8,53 @@
     <div class="col-md-8">
       <div class="card-body">
         
-        <p><%= @favorite.fetch("category")%></p>
-        
         <h3 class="d-flex justify-content-center align-items-center"><%= @favorite.fetch("name") %></h3>
         <p class="d-flex justify-content-center align-items-center"><%= @favorite.fetch("location") %></p>
-        <h5><%= star_rating(@favorite.fetch("rating").to_i) %></h5>
-        <p>Price: <%= @favorite.fetch("price") %></p>
-        <p>Reviews: <%= @favorite.fetch("reviews") %> </p>
-
-        <%= render "form", favorite: @favorite, yelp_place: @yelp_place  %>
         <div class="d-flex justify-content-center align-items-center">
-          <% if !current_page?(favorite_path) %>
-            <%= link_to yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
+          <span class="star-rating-big align-text-baseline"><%= star_rating(@favorite.fetch("rating").to_i) %></span>
+          <span class="space-between"></span>
+          <span class="review-count-small align-baseline"><%= @favorite.fetch("review_count") %> Reviews</span>
+        </div>
+        <div class="show-card-details">
+        <p> <% if !current_page?(favorite_path) %>
+            <%= link_to yelp_place["url"], target: "_blank", class: "yelp_url" do %>
               <i class="fa-brands fa-yelp"></i> View on Yelp
             <% end %>
           <% else %>
-            <%= link_to @yelp_place["url"], target: "_blank", class: "btn btn-primary" do %>
+            <%= link_to @yelp_place["url"], target: "_blank", class: "yelp_url" do %>
               <i class="fa-brands fa-yelp"></i> View on Yelp
+            <% end %></p>
+        <p>Price: <%= @favorite.fetch("price") %></p>
+        
+        <p> <%= @favorite.fetch("transactions").inspect%> </p>
+        </div>
+        <hr>
+        <%= render "form", favorite: @favorite, yelp_place: @yelp_place  %>
+          <div class="review-body">
+          <% @yelp_reviews.each do |review| %>
+              <p><%= "\"#{review["text"]}\""%> <%= link_to review["url"], target: "_blank", class: "review" do %>
+                see more 
+            <% end %></p>
             <% end %>
-            <%= link_to "Back to favorites", favorites_path, class: "btn btn-secondary" %>
-          <% end %>
+          </div>
+        <hr>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="rounded">
+            <% data_string = @favorite.fetch("categories") %>
+            <% titles = data_string.scan(/"title"=>"([^"]+)"/).flatten %>
+            <% titles.each do |title| %>
+              <div class="badge rounded-pill text-bg-secondary mr-1"><%= title %></div>
+            <% end %>
+          </div>
+        </div>
        </div> 
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center align-items-center">
+         
+            <%= link_to "Back to favorites", favorites_path, class: "btn btn-secondary" %>
+          <% end %>
 </div>
-       
        
     
