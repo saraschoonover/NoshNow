@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&family=Noto+Sans+Linear+A&display=swap');
+
+ 
  .card {
   margin: 50px;
  }
@@ -114,8 +117,44 @@ input {
 
 }
 
-.star-rating{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.star-rating-big {
+  font-size: 24px; 
+  vertical-align: text-bottom;
+}
+
+.show-img{
+  max-width: 100%;
+  height: auto;
+}
+
+.review-body p{
+  font-family: 'Hedvig Letters Sans', sans-serif;
+  color:#808080;
+  font-size: smaller;
+}
+
+h3 {
+  color:#646363;
+}
+
+.review-count-small {
+  font-size: 14px;
+  color:#808080;
+}
+
+.show-card-details {
+  color:#808080;
+  font-size: smaller;
+}
+
+.img-fluid {
+  object-fit: cover;
+}
+
+.card-body p{
+  color:#808080;
+}
+
+.badge {
+  background-color: #43A6C6 !important;
 }

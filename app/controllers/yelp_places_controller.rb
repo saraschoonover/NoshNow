@@ -21,8 +21,10 @@ class YelpPlacesController < ApplicationController
       price: @yelp_place["price"],
       location: "#{@yelp_place["location"]["city"]}, #{@yelp_place["location"]["state"]}",
       rating: @yelp_place["rating"],
-      category: @yelp_place["categories"],
-      yelp_id: @yelp_place["id"] 
+      categories: @yelp_place["categories"],
+      transactions: @yelp_place["transactions"],
+      review_count: @yelp_place["review_count"],
+      yelp_id: @yelp_place["id"]
     )
   end
 
