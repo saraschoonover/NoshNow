@@ -1,12 +1,13 @@
 <div class="jumbotron jumbotron-fluid custom-padding">
-  <div class="banner d-flex justify-content-center align-items-center flex-column">
+  <div class="banner d-flex justify-content-center align-items-start flex-column">
     <video autoplay loop muted playsinline class="banner-video">
       <source src="<%= asset_path('bananavideo.mp4') %>" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-      <div class="list d-flex flex-column justify-content-center align-items-center">
-        <h2 class="bannerSubtitleIndex">Welcome to NoshNow</h2>
-        <h2 class="subtitle">Embrace Indecision: Discover, Decide, Delight!</h2>
+      <div class="list d-flex flex-column justify-content-center align-items-center ml-4">
+        <h1 class="bannerSubtitleIndex">Welcome to NoshNow</h1>
+        <h2 class="subtitle">Embrace Indecision:</h2>
+        <h2 class="subtitle">Discover, Decide, Delight!</h2>
       </div>
       
   </div>
@@ -16,7 +17,7 @@
 <%= render "search" %>
 
    
-<div class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
+<div id="results" class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
   <% if @yelp_places.empty? %>
     <p>No restaurants match that criteria.</p>
   <% else %>

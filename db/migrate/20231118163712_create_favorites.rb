@@ -9,6 +9,7 @@ class CreateFavorites < ActiveRecord::Migration[7.0]
       t.string :review_count
       t.string :transactions
       t.float :rating
+      t.string :display_phone
       t.references :user, null: false, foreign_key: true
       t.string :yelp_id
 

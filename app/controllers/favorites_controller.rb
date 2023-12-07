@@ -38,7 +38,6 @@ class FavoritesController < ApplicationController
       end
     end
   end
-  
 
   # PATCH/PUT /favorites/1 or /favorites/1.json
   def update
@@ -72,6 +71,6 @@ class FavoritesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def favorite_params
-    params.require(:favorite).permit(:name, :image_url, :price, :location, :categories, :rating, :review_count, :transactions, :yelp_id)
+    params.require(:favorite).permit(:name, :image_url, :price, :location, :categories, :rating, :review_count, :transactions, :display_phone, :yelp_id)
   end
 end

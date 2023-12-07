@@ -27,7 +27,7 @@ class YelpClient
   end
 
   def get_reviews(yelp_id)
-    url = URI("#{BASE_URL}/businesses/#{yelp_id}/reviews?limit=5&sort_by=yelp_sort")
+    url = URI("#{BASE_URL}/businesses/#{yelp_id}/reviews?limit=2&sort_by=yelp_sort")
     fetch(url).fetch("reviews")
   end
 

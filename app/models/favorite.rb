@@ -4,19 +4,20 @@
 #
 # Table name: favorites
 #
-#  id           :bigint           not null, primary key
-#  categories   :string
-#  image_url    :string
-#  location     :string
-#  name         :string
-#  price        :string
-#  rating       :float
-#  review_count :string
-#  transactions :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint           not null
-#  yelp_id      :string
+#  id            :bigint           not null, primary key
+#  categories    :string
+#  display_phone :string
+#  image_url     :string
+#  location      :string
+#  name          :string
+#  price         :string
+#  rating        :float
+#  review_count  :string
+#  transactions  :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :bigint           not null
+#  yelp_id       :string
 #
 # Indexes
 #

@@ -1,0 +1,9 @@
+<div id="results" class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
+  <% if @yelp_places.empty? %>
+    <p>No restaurants match that criteria.</p>
+  <% else %>
+    <% @yelp_places.each do |yelp_place| %>
+      <%= render "yelp_place", yelp_place: yelp_place %>
+    <% end %>
+  <% end %>
+</div>
