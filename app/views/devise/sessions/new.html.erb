@@ -3,7 +3,7 @@
 <div class="card mx-auto mb-3 shadow rounded-4" style="max-width: 650px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img class="img-fluid rounded-start-4" src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGZvb2R8ZW58MHx8MHx8fDA%3D">
+      <img class="img-fluid rounded-start-4 h-100" src="https://images.unsplash.com/photo-1595124245030-41448b199d6d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVhY2h8ZW58MHx8MHx8fDA%3D">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -21,8 +21,11 @@
             input_html: { autocomplete: "current-password" } %>
               <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
+          
           <button type="submit" class="btn btn-primary">Sign In</button>
-          <%= render "devise/shared/links" %>
+          <p class="pt-1"><%= link_to "Forgot your password?", new_password_path(resource_name) %><br /></p>
+          <hr>
+          <p>Dont have an account?  <%= link_to "Sign up", new_registration_path(resource_name) %><br /></p>
           </form>
       </div>
     </div>

@@ -5,16 +5,16 @@
   height: auto;
 }
 
-.navbar-lewagon {
+.navbar-restaurant {
   justify-content: space-between;
   
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-restaurant .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-restaurant .navbar-brand img {
   width: 100px;
 }
 
@@ -22,9 +22,3 @@ h2 {
   font-family: 'Work Sans', sans-serif;
   font-size: 50px;
 }
-
-
-// .jumbotron {
-//   position: relative;
-//   overflow: hidden;
-// }
