@@ -23,7 +23,7 @@
         <div class="show-card-details">
         <p><i class="fa-solid fa-phone"></i> <%= @yelp_place.fetch("display_phone") %></p>
         <p><%= link_to @yelp_place["url"], target: "_blank", class: "yelp_url" do %>
-              <i class="fa-solid fa-utensils"></i> View on Yelp
+              <i class="fa-solid fa-utensils"></i>  View on Yelp
             <% end %></p>
         <p><i class="fa-solid fa-tag"></i> <%= @yelp_place.fetch("price") %></p>
         </div>
