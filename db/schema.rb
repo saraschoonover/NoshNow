@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_18_163712) do
     t.string "review_count"
     t.string "transactions"
     t.float "rating"
+    t.string "display_phone"
     t.bigint "user_id", null: false
     t.string "yelp_id"
     t.datetime "created_at", null: false

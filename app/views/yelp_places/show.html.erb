@@ -8,24 +8,24 @@
       <h3 class="d-flex justify-content-center align-items-center"><%= @yelp_place.fetch("name") %></h3>
       <p class="d-flex justify-content-center align-items-center"><%= @yelp_place.fetch("location").fetch("city") %>, <%= @yelp_place.fetch("location").fetch("state") %></p>
 
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center align-items-end pb-2">
         <span class="star-rating-big align-text-baseline"><%= star_rating(@yelp_place.fetch("rating").to_i) %></span>
         <span class="space-between"></span>
-        <span class="review-count-small align-baseline"><%= @yelp_place.fetch("review_count") %> Reviews</span>
+        <span class="review-count-small align-baseline pb-1 ps-2"><%= @yelp_place.fetch("review_count") %> Reviews</span>
       </div>
 
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end p-2">
           <p><% @yelp_place.fetch("transactions").each do |transaction|%>
-          <div class="badge rounded-pill text-bg-secondary mr-1"><%= transaction %></div>
+          <div class="badge rounded-pill text-bg-secondary m-1"><%= transaction %></div>
           <% end %> </p>
         </div>
 
         <div class="show-card-details">
         <p><i class="fa-solid fa-phone"></i> <%= @yelp_place.fetch("display_phone") %></p>
         <p><%= link_to @yelp_place["url"], target: "_blank", class: "yelp_url" do %>
-              <i class="fa-brands fa-yelp"></i> View on Yelp
+              <i class="fa-solid fa-utensils"></i> View on Yelp
             <% end %></p>
-        <p>Price: <%= @yelp_place.fetch("price") %></p>
+        <p><i class="fa-solid fa-tag"></i> <%= @yelp_place.fetch("price") %></p>
         </div>
 
         <hr>

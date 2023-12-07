@@ -8,6 +8,11 @@ class YelpPlacesController < ApplicationController
                   end
 
     YelpPlace.decorate_with_saved_flag(@yelp_places, current_user)
+
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
 
   def show
@@ -24,6 +29,7 @@ class YelpPlacesController < ApplicationController
       categories: @yelp_place["categories"],
       transactions: @yelp_place["transactions"],
       review_count: @yelp_place["review_count"],
+      display_phone: @yelp_place["display_phone"],
       yelp_id: @yelp_place["id"]
     )
   end
