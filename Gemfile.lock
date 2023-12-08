@@ -211,6 +211,8 @@ GEM
     msgpack (1.7.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    net-http (0.4.0)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -383,6 +385,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
+    uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -438,6 +441,7 @@ DEPENDENCIES
   http
   importmap-rails
   jbuilder
+  net-http
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
