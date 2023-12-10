@@ -24,7 +24,6 @@ class YelpClient
     query_string = URI.encode_www_form(query_params)
     url = URI("#{BASE_URL}/businesses/search?#{query_string}")
 
-    # TODO: map to YelpPlace[]
     fetch(url).fetch("businesses") || []
   end
 
@@ -35,7 +34,6 @@ class YelpClient
 
   def random_business
     businesses = search_businesses
-    # TODO: map to YelpPlace
     businesses.sample
   end
 

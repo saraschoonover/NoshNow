@@ -1,10 +1,11 @@
-console.log("DESTROY")
 
-//if else 
+var card = $("#yelp_place_<%= @favorite.yelp_id %>");
 
-$("#yelp_place_<%= @favorite.yelp_id %>").fadeOut(500, function() {
-  $(this).remove();
+// Fade out the card and remove it from the DOM
+card.fadeOut(500, function() {
+  card.remove();
 });
 
-var heartIcon = $(".fa-heart");
-heartIcon.removeClass("fa-solid").addClass("fa-regular");
+// Update the heart icon within the clicked card
+$(".fa-heart", card).removeClass("fa-solid").addClass("fa-regular");
+
