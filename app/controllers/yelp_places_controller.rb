@@ -1,5 +1,4 @@
 class YelpPlacesController < ApplicationController
-  # GET /searches or /searches.json
   def index
     @yelp_places = if params[:commit] == "I'm feeling lucky"
                     [YelpClient.new.random_business]
@@ -32,7 +31,7 @@ class YelpPlacesController < ApplicationController
       display_phone: @yelp_place["display_phone"],
       yelp_id: @yelp_place["id"]
     )
-  end
+   end
 
   private
   def search_params

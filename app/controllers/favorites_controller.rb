@@ -1,28 +1,23 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: %i[ show edit update destroy ]
 
-  # GET /favorites or /favorites.json
   def index
     @favorites = current_user.favorites
   end
 
-  # GET /favorites/1 or /favorites/1.json
   def show
     yelp_client = YelpClient.new
     @yelp_place = yelp_client.get_business(@favorite.yelp_id)
     @yelp_reviews = YelpClient.new.get_reviews(@favorite.yelp_id)
   end
 
-  # GET /favorites/new
   def new
     @favorite = Favorite.new
   end
 
-  # GET /favorites/1/edit
   def edit
   end
 
-  # POST /favorites or /favorites.json
   def create
     @favorite = current_user.favorites.build(favorite_params)
 
@@ -39,7 +34,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /favorites/1 or /favorites/1.json
   def update
     respond_to do |format|
       if @favorite.update(favorite_params)
@@ -52,7 +46,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /favorites/1 or /favorites/1.json
   def destroy
     @favorite.destroy
 
@@ -64,12 +57,10 @@ class FavoritesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_favorite
     @favorite = Favorite.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def favorite_params
     params.require(:favorite).permit(:name, :image_url, :price, :location, :categories, :rating, :review_count, :transactions, :display_phone, :yelp_id)
   end
