@@ -2,21 +2,19 @@
   alert("ERROR(S): <%= @favorite.errors.full_messages.join(', ') %>")
 <% else %>
 
-var form = $("#new_favorite");
+  var form = $("#new_favorite");
 
-form.attr("method","delete")
-form.attr("action", "/favorites/<%= @favorite.id %>")
+  form.attr("method","delete")
+  form.attr("action", "/favorites/<%= @favorite.id %>")
 
-var favorite = $("#yelp_place_<%= @favorite.yelp_id %>");
-var button = favorite.find('.btn-fave');
-var heartIcon = button.find('.heart');
-var isFavorited = heartIcon.hasClass('fa-solid');
-
+  var favorite = $("#yelp_place_<%= @favorite.yelp_id %>");
+  var button = favorite.find('.btn-fave');
+  var heartIcon = button.find('.heart');
+  var isFavorited = heartIcon.hasClass('fa-solid');
 
   console.log("Button clicked");
   isFavorited = !isFavorited;
   heartIcon.toggleClass('fa-regular', !isFavorited);
   heartIcon.toggleClass('fa-solid', isFavorited);
-
 
 <% end %>

@@ -1,15 +1,17 @@
 class YelpPlacesController < ApplicationController
+  before_action { authorize(@yelp_place || YelpPlace) }
+
   def index
     @yelp_places = if params[:commit] == "I'm feeling lucky"
-                    [YelpClient.new.random_business]
-                  else
-                    YelpClient.new.search_businesses(search_params)
-                  end
+        [YelpClient.new.random_business]
+      else
+        YelpClient.new.search_businesses(search_params)
+      end
 
     YelpPlace.decorate_with_saved_flag(@yelp_places, current_user)
 
     respond_to do |format|
-      format.html 
+      format.html
       format.js
     end
   end
@@ -29,11 +31,12 @@ class YelpPlacesController < ApplicationController
       transactions: @yelp_place["transactions"],
       review_count: @yelp_place["review_count"],
       display_phone: @yelp_place["display_phone"],
-      yelp_id: @yelp_place["id"]
+      yelp_id: @yelp_place["id"],
     )
-   end
+  end
 
   private
+
   def search_params
     params.permit(:location, :categories)
   end

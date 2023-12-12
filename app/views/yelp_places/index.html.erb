@@ -4,19 +4,17 @@
       <source src="<%= asset_path('bananavideo.mp4') %>" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-      <div class="list d-flex flex-column justify-content-center align-items-center ml-4">
-        <h1 class="bannerSubtitleIndex">Welcome to NoshNow</h1>
-        <h2 class="subtitle">Embrace Indecision:</h2>
-        <h2 class="subtitle">Discover, Decide, Delight!</h2>
-      </div>
-      
+    <div class="list d-flex flex-column justify-content-center align-items-center ml-4">
+      <h1 class="bannerSubtitleIndex">Welcome to NoshNow</h1>
+      <h2 class="subtitle">Embrace Indecision:</h2>
+      <h2 class="subtitle">Discover, Decide, Delight!</h2>
+    </div>
+
   </div>
 </div>
 
-
 <%= render "search" %>
 
-   
 <div id="results" class="search-card-container d-flex justify-content-center align-items-center flex-wrap">
   <% if @yelp_places.empty? %>
     <p>No restaurants match that criteria.</p>
@@ -26,5 +24,3 @@
     <% end %>
   <% end %>
 </div>
-
- 

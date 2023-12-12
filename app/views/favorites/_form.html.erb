@@ -10,7 +10,7 @@
     <%= f.hidden_field :price %>
     <%= f.hidden_field :location %>
     <%= f.hidden_field :categories %>
-    <%= f.hidden_field :rating %> 
+    <%= f.hidden_field :rating %>
     <%= f.hidden_field :review_count %>
     <%= f.hidden_field :transactions %>
     <%= f.hidden_field :display_phone %>
@@ -19,7 +19,7 @@
       <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
         <i class="fa-solid fa-heart heart fa-xl"></i>
       <% end %>
-    </div>  
+    </div>
   <% end %>
 
 <% else %>
@@ -35,14 +35,14 @@
     <%= f.hidden_field :transactions %>
     <%= f.hidden_field :display_phone %>
     <%= f.hidden_field :yelp_id %>
-     <div class="position-absolute top-0 end-0 mt-2 me-2">
+    <div class="position-absolute top-0 end-0 mt-2 me-2">
       <%= button_tag type: 'submit', id: favorite.fetch("id"), class: 'btn btn-fave', data: { favorite_id: favorite.fetch("id") } do %>
-         <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
-        <i class="fa-solid fa-heart heart fa-xl"></i>
-      <% else %>
-        <i class="fa-regular fa-heart heart fa-xl"></i>
+        <% if Favorite.find_by(yelp_id: @favorite.yelp_id).present? %>
+          <i class="fa-solid fa-heart heart fa-xl"></i>
+        <% else %>
+          <i class="fa-regular fa-heart heart fa-xl"></i>
+        <% end %>
       <% end %>
-      <% end %>
-    </div>  
+    </div>
   <% end %>
 <% end %>

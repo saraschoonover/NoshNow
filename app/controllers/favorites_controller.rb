@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: %i[ show edit update destroy ]
+  before_action { authorize(@favorite || Favorite) }
 
   def index
     @favorites = current_user.favorites
@@ -57,8 +58,15 @@ class FavoritesController < ApplicationController
   end
 
   private
+
   def set_favorite
-    @favorite = Favorite.find(params[:id])
+    begin
+      @favorite = Favorite.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to favorites_path, alert: "The favorite has already been deleted!"
+
+      return
+    end
   end
 
   def favorite_params
