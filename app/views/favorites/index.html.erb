@@ -1,9 +1,9 @@
 <div class="container-fluid custom-padding mt-4">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-12">
       <div class="banner-fave d-flex flex-column justify-content-start align-items-start">
-        <div class="logo-container">
-          <img src="<%= asset_path('favorites.png') %>" alt="Your Logo" style="max-width: 500px;">
+        <div class="logo-container ms-md-5">
+          <img src="<%= asset_path('favorites.png') %>" alt="Your Logo" style="max-width: 375px;">
         </div>
         <div class="d-flex flex-column justify-content-start align-items-start">
           <h2 class="subtitle"></h2>
@@ -19,10 +19,10 @@
               <div class="search-card-image-container position-relative">
                 <%= link_to favorite_path(favorite), class: "image-link" do %>
                   <img class="search-card-img-top" src="<%= favorite.fetch("image_url") %>" alt="Card image cap">
+                  <h5 class="search-card-title">
+                    <%= favorite.fetch("name") %>
+                  </h5>
                 <% end %>
-                <h5 class="search-card-title">
-                  <%= favorite.fetch("name") %>
-                </h5>
                 <%= button_to favorite_path(favorite), method: :delete, remote: true, class: 'btn btn-fave position-absolute top-0 end-0' do %>
                   <i class="fa-solid fa-heart heart fa-xl"></i>
                 <% end %>

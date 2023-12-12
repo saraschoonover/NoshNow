@@ -1,15 +1,11 @@
-
 <%= link_to yelp_place_path(id: yelp_place["id"]), class: "card-link" do %>
   <div class="search-card text-center h-100">
     <div class="search-card-image-container position-relative">
       <img class="search-card-img-top" src="<%= yelp_place.fetch("image_url") %>" alt="Card image cap">
       <%= button_tag type: 'submit', id: yelp_place["id"], class: 'btn btn-fave position-absolute top-0 end-0' do %>
-      <% if yelp_place["saved"] == true  %>
-        <i class="fa-solid fa-heart heart fa-xl"></i>
-        
-     
-        
-      <% end %>
+        <% if yelp_place["saved"] == true  %>
+          <i class="fa-solid fa-heart heart fa-xl"></i>
+        <% end %>
       <% end %>
       <h5 class="search-card-title">
         <%= yelp_place.fetch("name") %>

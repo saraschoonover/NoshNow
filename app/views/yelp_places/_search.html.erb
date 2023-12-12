@@ -8,7 +8,7 @@
           <%= form.label :location %>
         </div>
       </div>
-      
+
       <div class="col-lg-4">
         <div class="form-floating">
           <%= form.text_field :categories, value: params[:categories], class: "form-control" %>
@@ -17,17 +17,13 @@
       </div>
 
       <div class="col-lg-2 m-auto">
-          <%= form.submit "Search", type: "submit", class: "btn btn-outline-primary w-100"%>
-          
-        </div>
-        <div class="col-lg-2 m-auto">
-          <%= form.submit "I'm feeling lucky", class: "btn btn-outline-primary w-100" %>
-        </div>
+        <%= form.submit "Search", type: "submit", class: "btn btn-outline-primary w-100"%>
+
+      </div>
+      <div class="col-lg-2 m-auto">
+        <%= form.submit "I'm feeling lucky", class: "btn btn-outline-primary w-100" %>
+      </div>
     </div>
 
-     
-
-   
-   
   <% end %>
 </div>

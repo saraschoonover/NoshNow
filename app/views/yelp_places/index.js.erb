@@ -1,8 +1,5 @@
-console.log('removed')
 var new_results = 
-  '<%= escape_javascript(render "results") %>'
+'<%= escape_javascript(render "results") %>'
 
-console.log($('#form'))
-/* console.log(new_results) */
 $('#results').remove()
 $('#form').after(new_results)
