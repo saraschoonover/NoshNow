@@ -1,13 +1,13 @@
-<%= link_to yelp_place_path(id: yelp_place["id"]), class: "card-link" do %>
+<%= link_to yelp_place_path(id: yelp_place["id"]), class: "card-link", role: "link", "aria-label" => "Yelp Place Link" do %>
   <div class="search-card text-center h-100">
     <div class="search-card-image-container position-relative">
-      <img class="search-card-img-top" src="<%= yelp_place.fetch("image_url") %>" alt="Card image cap">
-      <%= button_tag type: 'submit', id: yelp_place["id"], class: 'btn btn-fave position-absolute top-0 end-0' do %>
+      <img class="search-card-img-top" src="<%= yelp_place.fetch("image_url") %>" alt="Card image cap" aria-label="Yelp Place Image">
+      <%= button_tag type: 'submit', id: yelp_place["id"], class: 'btn btn-fave position-absolute top-0 end-0', role: "button", "aria-label" => "Favorite Button" do %>
         <% if yelp_place["saved"] == true  %>
-          <i class="fa-solid fa-heart heart fa-xl"></i>
+          <i class="fa-solid fa-heart heart fa-xl" aria-label="Favorited"></i>
         <% end %>
       <% end %>
-      <h5 class="search-card-title">
+      <h5 class="search-card-title" aria-label="Yelp Place Title">
         <%= yelp_place.fetch("name") %>
       </h5>
     </div>
