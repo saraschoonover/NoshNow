@@ -12,7 +12,6 @@
   var heartIcon = button.find('.heart');
   var isFavorited = heartIcon.hasClass('fa-solid');
 
-  console.log("Button clicked");
   isFavorited = !isFavorited;
   heartIcon.toggleClass('fa-regular', !isFavorited);
   heartIcon.toggleClass('fa-solid', isFavorited);
