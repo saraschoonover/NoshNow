@@ -1,6 +1,8 @@
 # NoshNow
+A webapp for indecisive food lovers who want to make good decisions quickly.
 
-## Description: A webapp for indecisive food lovers who want to make good decisions quickly.
+## Description: 
+NoshNow is your go-to app for embracing the beauty of indecision when it comes to choosing where or what to eat. I understand that sometimes deciding where to dine can be a challenging task. That's why I've created a unique experience that encourages you to lean into indecision and turn the process into a fun and spontaneous adventure with just the click of a button.
 
 ## ERD: [Link to ERD](https://ideas.firstdraft.com/ideas/11874)
 
