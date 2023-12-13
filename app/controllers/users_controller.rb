@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def profile
-    @user = current_user
-    authorize @user, policy_class: UserPolicy
+   authorize @user = current_user
   end
 end
