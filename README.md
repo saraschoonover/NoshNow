@@ -54,3 +54,6 @@ Set the necessary secret keys as environment variables. Update the mailers as re
 ## Authors
 
 Sara Schoonover
+
+## Acknowledgements
+Special thanks to the team at Discovery Partner's Institute.
