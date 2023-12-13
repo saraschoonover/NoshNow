@@ -1,60 +1,64 @@
-<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 750px;" role="region" aria-label="Favorite Restaurant Details">
+
+
+<div id="yelp_place_<%= @favorite.yelp_id %>" class="card mx-auto mb-3 shadow rounded-4" style="max-width: 750px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img class="img-fluid h-100 rounded-start-4" src="<%= @favorite["image_url"] %>" aria-label="Restaurant Image">
+      <img class="img-fluid h-100 rounded-start-4" src="<%= @favorite["image_url"] %>">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-
-        <h3 class="d-flex justify-content-center align-items-center" aria-label="Restaurant Name"><%= @favorite.fetch("name") %></h3>
-        <p class="d-flex justify-content-center align-items-center"  aria-label="Restaurant Location"><%= @favorite.fetch("location") %></p>
+        
+        <h3 class="d-flex justify-content-center align-items-center"><%= @favorite.fetch("name") %></h3>
+        <p class="d-flex justify-content-center align-items-center"><%= @favorite.fetch("location") %></p>
         <div class="d-flex justify-content-center align-items-end">
-          <span class="star-rating-big"  aria-label="Restaurant Rating"><%= star_rating(@favorite.fetch("rating").to_i) %></span>
+          <span class="star-rating-big"><%= star_rating(@favorite.fetch("rating").to_i) %></span>
           <span class="space-between"></span>
-          <span class="review-count-small pb-1 ps-2"  aria-label="Number of Reviews"><%= @favorite.fetch("review_count") %> Reviews</span>
+          <span class="review-count-small pb-1 ps-2"><%= @favorite.fetch("review_count") %> Reviews</span>
         </div>
         <div class="d-flex justify-content-end p-2">
-          <p> <% @favorite.fetch("transactions").split(" ").each do |transaction| %> </p>
-            <div class="badge rounded-pill text-bg-secondary m-1" aria-label="Transaction Type"><%= transaction %></div>
+           <p> <% @favorite.fetch("transactions").split(" ").each do |transaction| %> </p>
+          <div class="badge rounded-pill text-bg-secondary m-1"><%= transaction %></div>
           <% end %> </p>
-      </div>
+        </div>
 
-      <div class="show-card-details">
-        <p><i class="fa-solid fa-phone"  aria-hidden="true"></i> <%= @favorite.fetch("display_phone") %></p>
+        <div class="show-card-details">
+        <p><i class="fa-solid fa-phone"></i> <%= @favorite.fetch("display_phone") %></p>
         <p> <% if !current_page?(favorite_path) %>
             <%= link_to yelp_place["url"], target: "_blank", class: "yelp_url" do %>
-              <i class="fa-solid fa-utensils" aria-hidden="true"> </i> View on Yelp
+              <i class="fa-solid fa-utensils"> </i> View on Yelp
             <% end %>
           <% else %>
             <%= link_to @yelp_place["url"], target: "_blank", class: "yelp_url" do %>
-              <i class="fa-solid fa-utensils" aria-hidden="true"></i>View on Yelp
+              <i class="fa-solid fa-utensils"></i>View on Yelp
             <% end %></p>
-          <p><i class="fa-solid fa-tag" aria-hidden="true"></i> <%= @favorite.fetch("price") %></p>
+        <p><i class="fa-solid fa-tag"></i> <%= @favorite.fetch("price") %></p>
         </div>
         <hr>
         <%= render "form", favorite: @favorite, yelp_place: @yelp_place  %>
-        <div class="review-body">
+          <div class="review-body">
           <% @yelp_reviews.each do |review| %>
-            <p><%= "\"#{review["text"]}\""%> <%= link_to review["url"], target: "_blank", class: "review" do %>
+              <p><%= "\"#{review["text"]}\""%> <%= link_to review["url"], target: "_blank", class: "review" do %>
                 see more 
-              <% end %></p>
-          <% end %>
-        </div>
+            <% end %></p>
+            <% end %>
+          </div>
         <hr>
-        <div class="d-flex justify-content-center align-items-center" role="list" aria-label="Restaurant Categories">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="rounded">
             <% data_string = @favorite.fetch("categories") %>
             <% titles = data_string.scan(/"title"=>"([^"]+)"/).flatten %>
             <% titles.each do |title| %>
-              <div class="badge rounded-pill text-bg-secondary mr-1" aria-label="Category"><%= title %></div>
+              <div class="badge rounded-pill text-bg-secondary mr-1"><%= title %></div>
             <% end %>
           </div>
         </div>
+       </div> 
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center align-items-center pt-4">
+            <%= link_to "Back to favorites", favorites_path, class: "back_to_fave" %>
+          <% end %>
 </div>
-<div class="d-flex justify-content-center align-items-center pt-4">
-  <%= link_to "Back to favorites", favorites_path, class: "back_to_fave", aria-label="Back to Favorites Button"  %>
-<% end %>
-</div>
+       
+    
