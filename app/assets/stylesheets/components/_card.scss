@@ -161,3 +161,9 @@ h3 {
 .yelp_url {
   text-decoration: none;
 }
+
+.rounded-image {
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
