@@ -1,7 +1,8 @@
-### Project Name:
-"NoshNow"
+##### NoshNow
 
-A webapp for indecisive food lovers who want to make a good decision quickly. 
+### Overview
+
+A webapp for indecisive food lovers who want to make a good decisions quickly. 
 
 ### ERD
 https://ideas.firstdraft.com/ideas/11874

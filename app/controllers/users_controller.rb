@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def profile
-    @restaurants = Favorite.where(favoritor: @user)
+    @user = current_user
+    authorize @user, policy_class: UserPolicy
   end
 end
