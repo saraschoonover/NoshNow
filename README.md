@@ -31,13 +31,7 @@ or
 bin/dev
 ```
 
-To populate the app with sample data for testing:
-
-```bash
-rails dev:sample_data
-```
-
-For resetting the development database:
+For resetting the development database and populatng with data:
 
 ```bash
 rails dev:reset
