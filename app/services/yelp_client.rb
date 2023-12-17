@@ -42,6 +42,11 @@ class YelpClient
     fetch(url)
   end
 
+  def get_location(yelp_id)
+    url = URI("#{BASE_URL}/businesses/#{yelp_id}")
+    fetch(url).fetch("coordinates")
+  end
+
   private
 
   def fetch(url)

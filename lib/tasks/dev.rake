@@ -10,9 +10,9 @@ unless Rails.env.production?
       "db:create",
       "db:migrate",
       "dev:add_users",
-      "sample_data"
+      "add_favorites"
     ]
- 
+
 
     task add_users: :environment do
       puts "adding users..."
@@ -23,10 +23,10 @@ unless Rails.env.production?
           password: "password",
           image_url: "https://plus.unsplash.com/premium_photo-1689266188052-704d33673e69?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d29tYW58ZW58MHx8MHx8fDA%3D"
         )
-      end 
+      end
     end
 
-    task :sample_data => :environment do
+    task add_favorites: :environment do
       unless Rails.env.production?
         api_key = ENV["YELP_KEY"]
 
@@ -51,8 +51,8 @@ unless Rails.env.production?
             number = 0
             5.times do
               business = JSON.parse(response.body)['businesses'][number]
-              pp "business id #{ business['id']}"
-              Favorite.create!(
+              favorite = Favorite.find_or_initialize_by(yelp_id: business['id'], user: user)
+              favorite.update!(
                 user: user,
                 name: business['name'],
                 categories: business['categories'].map { |category| category['title'] }.join(', '),
@@ -66,7 +66,7 @@ unless Rails.env.production?
                 yelp_id: business['id']
               )
 
-              number = number + 1 
+              number = number + 1
               pp "number updated to #{number}"
             end
             else
