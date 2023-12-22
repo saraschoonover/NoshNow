@@ -1,5 +1,5 @@
 require "net/http"
-
+# great use of service object and methods. 
 class YelpClient
   BASE_URL = "https://api.yelp.com/v3".freeze
 
@@ -32,6 +32,7 @@ class YelpClient
     fetch(url).fetch("reviews")
   end
 
+  #nice methods
   def random_business
     businesses = search_businesses
     businesses.sample
